@@ -1,0 +1,25 @@
+name: Update coverage
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install yarn packages
+        run: yarn install --frozen-lockfile
+
+      - name: Tests coverage
+        run: yarn tests:coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          path-to-lcov: './coverage/lcov.info'
+          github-token: ${{ secrets.TS_EXPECT_ERROR_VALIDATOR_GITHUB_TOKEN }}

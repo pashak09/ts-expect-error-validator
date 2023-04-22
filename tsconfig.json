@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "CommonJS",
+    "target": "ES2022",
+    "removeComments": true,
+    "incremental": true,
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "allowSyntheticDefaultImports": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "tsBuildInfoFile": ".tsconfig.tsbuildinfo",
+    "resolveJsonModule": true,
+    "paths": {
+      "@app/*": ["./src/*"]
+    }
+  },
+  "exclude": [
+    "./dist/*"
+  ]
+}
