@@ -27,28 +27,40 @@ yarn add -D ts-expect-error-validator
 ## An example of usage:
 
 ```typescript
-export class GuestUser {
-    // @ts-expect-error [TS6133] - ignore the 'myNumber' is declared but its value is never read message
-    private myNumber: undefined;
+class User {
+   // Specify only a TS code for validation
+   // @ts-expect-error [TS6133]
+   private myNumber: string | undefined;
 }
 
 function getMyData(): string | undefined {
-    return 'myData';
+   return 'myData';
 }
 
-// @ts-expect-error [TS2532 - Object is possibly 'undefined'] - You can specify the message and a ts code for validation for `strict` mode.
+// Specify the message and a TS code for validation for `strict` mode
+// @ts-expect-error [TS2532 - Object is possibly 'undefined']
 getMyData().length;
 
-// You can also ignore a line like this:
+// Other approach for ignoring a line:
 getMyData().length; // @ts-expect-error [TS2532]
+
+// Specify several TS code errors for validation for a line: 
+// @ts-expect-error [TS2322, TS6133]
+const object: { a: number } = { b: 5 };
+
+// Specify several TS code errors with message description for validation
+// @ts-expect-error [TS6133 - 'object' is declared but its value is never read, TS2322 - Type '{ b: number; }' is not assignable to type '{ a: number; }']
+const sample: { a: number } = { b: 5 };
 ```
+
+By default, the file extensions analyzed are `tsx` and `ts`.
 
 #### Cli Options:
 
 | Option                    | Description                                                                                                                                                                                                                                                                                                     |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `--tsConfigPath=<PATH>`   | Path to the `tsconfig.json` file to use. Defaults to the `tsconfig.json` in the current directory.                                                                                                                                                                                                              |
-| `--restore`               | Since we have to change all @ts-expect-error to something else, this changes the content file. You can use this option to restore files.                                                                                                                                                                        |
+| `--restore`               | Since we have to change all @ts-expect-error to something else, this changes the content file. You can use this option to restore changed files.                                                                                                                                                                |
 | `--sourcePath=<PATH>`     | Path to the directory or the file containing @ts-expect-error to validate. You can specify several folders or files to make search more productive.                                                                                                                                                             |
 | `--outputFormat=<FORMAT>` | The output format. Can be either `json` or `human`. Defaults to `human`.                                                                                                                                                                                                                                        |
 | `--quiet`                 | If present, suppresses all output except for report results.                                                                                                                                                                                                                                                    |
@@ -56,7 +68,7 @@ getMyData().length; // @ts-expect-error [TS2532]
 
 ### Example Usage:
 
-```bash
+```
 //a package.json file
 ...
 "scripts": {
@@ -70,12 +82,12 @@ yarn ts-expect-error-validator
 
 ## Hits
 
-In your pull request, you don't have to scan all project sources. You can check only the changed files by running this
+-  There is no need to scan all project sources for pull requests, instead it's more useful to check only the changed files by running this
 command:
-
-```bash
- yarn ts-expect-error-validator $(git diff --name-only HEAD | grep "\.ts$" | xargs -I {} echo "--sourcePath={}" | tr '\n' ' ')
-```
+    ```bash
+     yarn ts-expect-error-validator $(git diff --name-only HEAD | grep "\.ts$" | xargs -I {} echo "--sourcePath={}" | tr '\n' ' ')
+    ```
+* There is an [ES Rule](https://github.com/pashak09/eslint-plugin-ts-expect-error-validator) to ensure that code includes signatures for the validator.
 
 ## License
 

@@ -1,10 +1,19 @@
 {
   "name": "ts-expect-error-validator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "pashak09",
   "description": "",
   "license": "MIT",
   "main": "dist/cli.js",
+  "keywords": [
+    "ts-expect-error-validator",
+    "ts-expect-error",
+    "ts-error",
+    "error",
+    "ts-ignore",
+    "typescript",
+    "ts"
+  ],
   "bin": {
     "ts-expect-error-validator": "dist/cli.js"
   },

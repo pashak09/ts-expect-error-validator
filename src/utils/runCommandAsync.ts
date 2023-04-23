@@ -1,5 +1,7 @@
 import { spawn } from 'child_process';
 
+const WINDOWS_PLATFORM = 'win32';
+
 export async function runCommandAsync(
   cmd: string,
   args: readonly string[],
@@ -7,7 +9,7 @@ export async function runCommandAsync(
   return new Promise<string>(
     (resolve: (_: string) => void, reject: (_: Error) => void): void => {
       const spawnProcess = spawn(cmd, args, {
-        shell: process.platform == 'win32',
+        shell: process.platform == WINDOWS_PLATFORM,
       });
       const outputBuffers: Buffer[] = [];
 
