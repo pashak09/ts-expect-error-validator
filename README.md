@@ -2,8 +2,8 @@
   <a href="https://github.com/pashak09/ts-expect-error-validator/actions">
     <image src="https://github.com/pashak09/ts-expect-error-validator/actions/workflows/ci.yml/badge.svg" alt="test" />
   </a>
-  <a href="https://coveralls.io/github/pashak09/ts-expect-error-validator?branch=main">
-    <img src="https://coveralls.io/repos/github/pashak09/ts-expect-error-validator/badge.svg?branch=main" alt="Coverage Status" />
+  <a href="https://coveralls.io/github/pashak09/ts-expect-error-validator?branch=master">
+    <img src="https://coveralls.io/repos/github/pashak09/ts-expect-error-validator/badge.svg?branch=master" alt="Coverage Status" />
   </a>
   <a href="https://www.npmjs.com/package/ts-expect-error-validator">
     <img src="https://img.shields.io/npm/v/ts-expect-error-validator" alt="npm shield" />
