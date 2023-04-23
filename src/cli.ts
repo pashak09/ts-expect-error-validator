@@ -13,7 +13,7 @@ import { argumentsParser } from '@app/utils/args/argumentsParser';
 (async (): Promise<void> => {
   const args = argumentsParser();
   const logger = new Logger(
-    args.debug == true
+    args.debug === true
       ? LogLevel.DEBUG
       : args.quiet
       ? LogLevel.ERROR

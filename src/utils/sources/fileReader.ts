@@ -1,7 +1,7 @@
-import fs from 'fs';
+import { createReadStream } from 'fs';
 
 export async function* fileReader(filePath: string): AsyncGenerator<string> {
-  const fileStream = fs.createReadStream(filePath, { encoding: 'utf8' });
+  const fileStream = createReadStream(filePath, { encoding: 'utf8' });
   let remaining = '';
 
   for await (const chunk of fileStream) {
