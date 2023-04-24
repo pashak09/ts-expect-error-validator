@@ -1,6 +1,6 @@
 {
   "name": "ts-expect-error-validator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "pashak09",
   "description": "",
   "license": "MIT",
@@ -14,6 +14,10 @@
     "typescript",
     "ts"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pashak09/ts-expect-error-validator"
+  },
   "bin": {
     "ts-expect-error-validator": "dist/cli.js"
   },
