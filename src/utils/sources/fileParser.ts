@@ -7,7 +7,7 @@ export async function fileParser(
   filePath: string,
 ): Promise<readonly SourceExpectedError[]> {
   const tsExpectedErrors: SourceExpectedError[] = [];
-  const groupedTsExpectedErrors: string[] = [];
+  let tsExpectedErrorLine: string = '';
   let lineNumber = 0;
 
   for await (const line of fileReader(filePath)) {
@@ -26,13 +26,11 @@ export async function fileParser(
     }
 
     if (lineEndsWithTsError === true && tsExpectedLineErrorsInfo !== null) {
-      groupedTsExpectedErrors.push(tsExpectedLineErrorsInfo);
+      tsExpectedErrorLine = tsExpectedLineErrorsInfo;
     }
 
-    if (groupedTsExpectedErrors.length > 0 && isComment === false) {
-      const expectedErrors: readonly string[] = groupedTsExpectedErrors
-        .join(',')
-        .split(',');
+    if (tsExpectedErrorLine.length > 0 && isComment === false) {
+      const expectedErrors: readonly string[] = tsExpectedErrorLine.split(',');
 
       for (const expectedError of expectedErrors) {
         const [code, message] = expectedError.trim().split('-');
@@ -45,14 +43,13 @@ export async function fileParser(
         });
       }
 
-      //clear a grouped errors bucket
-      groupedTsExpectedErrors.length = 0;
+      tsExpectedErrorLine = '';
 
       continue;
     }
 
     if (hasTsError === true) {
-      groupedTsExpectedErrors.push(tsExpectedLineErrorsInfo ?? '');
+      tsExpectedErrorLine = tsExpectedLineErrorsInfo ?? ' ';
     }
   }
 

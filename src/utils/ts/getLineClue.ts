@@ -13,7 +13,6 @@ export function getLineClue(line: string): LineClue {
   const tsExpectErrorIndex = line.indexOf(TS_EXPECT_ERROR);
   const trimmedLine = line.replaceAll(' ', '');
   const isComment =
-    trimmedLine.startsWith('#') ||
     trimmedLine.startsWith('//') ||
     trimmedLine.startsWith('/**') ||
     trimmedLine.startsWith('*');
@@ -29,7 +28,7 @@ export function getLineClue(line: string): LineClue {
     };
   }
 
-  const cleanedLine = trimmedLine.replaceAll('//', '').replaceAll('*', '');
+  const cleanedLine = trimmedLine.replaceAll('//', '');
 
   const lineStartsWithTsError =
     cleanedLine.startsWith(TS_EXPECT_ERROR) ||
@@ -37,8 +36,7 @@ export function getLineClue(line: string): LineClue {
   const tsExpectedErrorInfo = line
     .substring(tsExpectErrorIndex)
     .split('[')[1]
-    ?.split(']')[0]
-    ?.trim();
+    ?.split(']')[0];
 
   return {
     lineStartsWithTsError,
