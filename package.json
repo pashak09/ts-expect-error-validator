@@ -47,9 +47,7 @@
     "typescript": "^5.0.4"
   },
   "engines": {
-    "node": ">=16.17.0",
-    "npm": "please-use-yarn",
-    "yarn": "^1.22.5"
+    "node": ">=16.17.0"
   },
   "files": [
     "dist"
